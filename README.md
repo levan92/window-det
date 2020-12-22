@@ -4,7 +4,7 @@
 
 This repo attempts to detect lines/windows/gui elements within a given input image (can be a screenshot etc.)
 
-Simple aggregation of traditional CV (as opposed to deep learned) approaches:
+Simple aggregation of traditional CV (as opposed to deep learned) approaches in our pipeline:
 
 1. Input image goes through [**Canny Edge Detector**](https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_imgproc/py_canny/py_canny.html) &rarr; Binary map of edges
 2. [**Closing**](https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_imgproc/py_morphological_ops/py_morphological_ops.html) is applied on the binary map to clean up small gaps between potential line edges
