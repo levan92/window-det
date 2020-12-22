@@ -1,0 +1,2 @@
+example_inputs/negative-maximised.jpg,False
+example_inputs/positive-minimised.jpg,True

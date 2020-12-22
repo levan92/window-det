@@ -1,0 +1,11 @@
+{
+    "target_window_areas": null,
+    "canny_minval": 150, 
+    "canny_maxval": 500, 
+    "closing_kernel_width": 5, 
+    "hough_rho": 1, 
+    "hough_theta_degree": 1, 
+    "hough_thresh": 100, 
+    "hough_minLineLength" : 1000, 
+    "hough_maxLineGap": 500
+}
