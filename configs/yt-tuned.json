@@ -1,0 +1,14 @@
+{
+    "target_window_areas": [
+        [1389, 178, 1431, 688],
+        [273, 132, 924, 173]
+    ],
+    "canny_min_val": 150, 
+    "canny_max_val": 500, 
+    "closing_kernel_width": 5, 
+    "hough_rho": 1, 
+    "hough_theta_degree": 1, 
+    "hough_thresh": 300, 
+    "hough_min_line_length": 700, 
+    "hough_max_line_gap": 80
+}
