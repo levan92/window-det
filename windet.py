@@ -7,7 +7,7 @@ from utils import rect_intersect_line
 
 class WindowDetector():
     def __init__(self, target_window_areas=None,
-                 canny_minval=150, canny_maxval=500, closing_kernel_width=5,
+                 canny_min_val=150, canny_max_val=500, closing_kernel_width=5,
                  hough_rho=1, hough_theta_degree=1, hough_thresh=100,
                  hough_min_line_length=1000, hough_max_line_gap=500):
         '''
@@ -22,8 +22,8 @@ class WindowDetector():
             assert self.target_window_areas
 
         # Canny Edge Detector
-        self.canny_minval = canny_minval
-        self.canny_maxval = canny_maxval
+        self.canny_min_val = canny_min_val
+        self.canny_max_val = canny_max_val
 
         # Closing
         self.closing_kernel = np.ones((closing_kernel_width, closing_kernel_width), np.uint8)
@@ -42,7 +42,7 @@ class WindowDetector():
         return cls(**config)
 
     def get_edges_map(self, img):
-        return cv2.Canny(img, self.canny_minval, self.canny_maxval)
+        return cv2.Canny(img, self.canny_min_val, self.canny_max_val)
 
     def closing(self, edges_map):
         return cv2.morphologyEx(edges_map, cv2.MORPH_CLOSE, self.closing_kernel)

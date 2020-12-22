@@ -3,8 +3,8 @@
         [1389, 178, 1431, 688],
         [273, 132, 924, 173]
     ],
-    "canny_minval": 150, 
-    "canny_maxval": 500, 
+    "canny_min_val": 150, 
+    "canny_max_val": 500, 
     "closing_kernel_width": 5, 
     "hough_rho": 1, 
     "hough_theta_degree": 1, 
