@@ -53,7 +53,7 @@ After tuning:
 python3 tune.py --config configs/yt-example.json --pos example_inputs/positive-minimised.jpg --neg example_inputs/negative-maximised.jpg  --out configs/tuning.json
 ```
 
-After exitting from cv2 window (press `q`), most recent trackbar values will be printed out and saved out to `configs/tuning.json` by default
+After exiting from cv2 window (press `q`), most recent trackbar values will be printed out and saved out to `configs/tuning.json` by default
 
 ## Run
 
