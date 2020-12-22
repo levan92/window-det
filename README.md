@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This repo attempts to detect lines/windows/gui elements within a given input image (can be a screenshot etc.)
+This repo attempts to detect lines/windows/gui elements within a given input image (can be a screenshot etc.).
 
 Simple aggregation of traditional CV (as opposed to deep learned) approaches in our pipeline:
 
