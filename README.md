@@ -45,9 +45,9 @@ Before tuning:
 After tuning:
 ![after-tuning](illustrations/after_tuning.jpg)
 
-- Cyan lines: Detected lines intersecting a target rectangle
-- Green rectangle: Target rectangle which has lines intersecting it
-- Yellow rectangle: Target rectangle with no lines intersecting it
+![#00ffff](https://via.placeholder.com/15/00ffff/000000?text=+) Cyan lines: Detected lines intersecting a target rectangle  
+![#00ff00](https://via.placeholder.com/15/00ff00/000000?text=+) Green rectangle: Target rectangle which has lines intersecting it  
+![#ffff00](https://via.placeholder.com/15/ffff00/000000?text=+) Yellow rectangle: Target rectangle with no lines intersecting it
 
 ```python
 python3 tune.py --config configs/yt-example.json --pos example_inputs/positive-minimised.jpg --neg example_inputs/negative-maximised.jpg  --out configs/tuning.json
