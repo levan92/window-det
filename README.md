@@ -9,6 +9,7 @@ Simple aggregation of traditional CV (as opposed to deep learned) approaches:
 1. Input image goes through Canny Edge Detector &rarr; Binary map of edges
 2. Closing is applied on the binary map to clean up small gaps between potential line edges
 3. Hough Transform is then applied on the resultant binary map of edges to detect lines &rarr; a set of lines according to criteria set
+4. This set of legit lines is tested for interception with given target rectangles. If all given target rectangles have lines intersecting them, then it is considered a positive case and the window is determined to exist in given image.
 
 Since traditional CV approaches are used, you should probably expect that you will need to tune your parameters to your data to achieve your desired results. This repo is meant for a fixed setting, suitable for consistent screenshots within a fixed set of window configurations.
 
