@@ -53,7 +53,9 @@ After tuning:
 python3 tune.py --config configs/yt-example.json --pos example_inputs/positive-minimised.jpg --neg example_inputs/negative-maximised.jpg  --out configs/tuning.json
 ```
 
-After exiting from cv2 window (press `q`), most recent trackbar values will be printed out and saved out to `configs/tuning.json` by default
+Running this will spin up a cv2 window with trackbars that control different parameters for the Hough transform, where you can tune and see the results in real-time. After exiting from cv2 window (press `q`), most recent trackbar values will be printed out and saved out to `configs/tuning.json` by default.
+
+To tune the other parameters, just modify the trackbar code segments according for your parameters you want to tune. 
 
 ## Run
 
