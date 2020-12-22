@@ -63,4 +63,4 @@ To tune the other parameters, just modify the trackbar code segments according f
 python3 run.py --config configs/yt-tuned.json --output example_outputs/results.txt --dir example_inputs
 ```
 
-Results will be outputted to given output path as txt file, in `<image path>, <whether target window exists>` lines.
+Results will be outputted to given output path as txt file, in `<image path>,<whether target window exists>` lines.
