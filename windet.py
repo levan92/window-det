@@ -68,6 +68,9 @@ class WindowDetector():
             if len(lines) > 0:
                 return True 
         else:
+            if lines is None:
+                return False
+                
             for rect in self.target_window_areas:
                 
                 for line in lines:
