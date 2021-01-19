@@ -74,31 +74,30 @@ class WindowDetector():
 
     def has_target_windows(self, img):
         lines = self.get_lines(img)
+        if lines is None:
+            return False
+
         if self.target_window_areas is None and self.target_window_pegs is None:
-            if len(lines) > 0:
-                return True 
-        else:
-            if lines is None:
-                return False
-            
-            if self.target_window_pegs is not None:
-                for line_seg in self.target_window_pegs:
-                    for line in lines:
-                        if line_intersect_line(line, line_seg):
-                            break
-                    else: # None of the lines intersect with this peg
-                        return False
-
-            if self.target_window_areas is not None:
-                for rect in self.target_window_areas:
-                    for line in lines:
-                        line_flat = line.flatten()
-                        if rect_intersect_line(rect, line_flat):
+            return len(lines) > 0
+        
+        if self.target_window_pegs is not None:
+            for line_seg in self.target_window_pegs:
+                for line in lines:
+                    if line_intersect_line(line, line_seg):
                         break
-                    else: # None of the lines intersect with this rect
-                        return False
+                else: # None of the lines intersect with this peg
+                    return False
 
-            return True
+        if self.target_window_areas is not None:
+            for rect in self.target_window_areas:
+                for line in lines:
+                    line_flat = line.flatten()
+                    if rect_intersect_line(rect, line_flat):
+                        break
+                else: # None of the lines intersect with this rect
+                    return False
+
+        return True
 
     def tune(self, img):
         img_show = img.copy()
@@ -114,26 +113,27 @@ class WindowDetector():
         intersect_color = (0, 255, 0)
         no_intersect_color = (0, 255, 255)
 
-        if self.target_window_areas is None:
-            for line in lines:
-                line_flat = line.flatten()
-                x1, y1, x2, y2 = line_flat
-                cv2.line(img_show, (x1, y1), (x2, y2), line_color, 2)
+        # if self.target_window_areas is None:
+        for line in lines:
+            line_flat = line.flatten()
+            x1, y1, x2, y2 = line_flat
+            cv2.line(img_show, (x1, y1), (x2, y2), line_color, 2)
 
-        else:
+        if self.target_window_areas is not None:
             for rect in self.target_window_areas:
-                intersect = False
+                # intersect = False
+                rcolor = no_intersect_color
                 for line in lines:
                     line_flat = line.flatten()
                     if rect_intersect_line(rect, line_flat):
-                        x1, y1, x2, y2 = line_flat
-                        cv2.line(img_show, (x1, y1), (x2, y2), line_color, 2)
-                        intersect = True
-
-                if intersect:
-                    rcolor = intersect_color
-                else: 
-                    rcolor = no_intersect_color
+                        # x1, y1, x2, y2 = line_flat
+                        # cv2.line(img_show, (x1, y1), (x2, y2), line_color, 2)
+                        # intersect = True
+                # if intersect:
+                       rcolor = intersect_color
+                # else: 
+                    # rcolor = no_intersect_color
                 l, t, r, b = rect
                 cv2.rectangle(img_show, (l, t), (r, b), rcolor, 2)
+
         return img_show
