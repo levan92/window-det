@@ -14,12 +14,12 @@ class WindowDetector():
                  hough_min_line_length=1000, hough_max_line_gap=500):
         '''
         target_window_pegs : list (optional)
-            list of line segments in tuples of tuples ((X1,Y1),(X2,Y2)) format.
-            If none is given, all lines are considered window.
+            a list of a list of (at least one) peg(s), at least a detected line has to intersect each set of pegs.  
+            If neither pegs or areas are given, all lines are considered window.
 
         target_window_areas : list (optional)
-            list of rectangular areas in LTRB tuples.
-            If none is given, all lines are considered window.
+            list of rectangular areas in LTRB tuples to be intersected
+            If neither pegs or areas are given, all lines are considered window.
 
         '''
 
@@ -81,9 +81,9 @@ class WindowDetector():
             return len(lines) > 0
         
         if self.target_window_pegs is not None:
-            for line_seg in self.target_window_pegs:
+            for set_of_pegs in self.target_window_pegs:
                 for line in lines:
-                    if line_intersect_line(line, line_seg):
+                    if all(line_intersect_line(line.flatten(), peg) for peg in set_of_pegs):
                         break
                 else: # None of the lines intersect with this peg
                     return False
@@ -109,15 +109,36 @@ class WindowDetector():
             return img_show
         # print(f'Num lines: {len(lines)}')
 
-        line_color = (255, 255, 0)
-        intersect_color = (0, 255, 0)
-        no_intersect_color = (0, 255, 255)
+        line_color = (255, 255, 0) #CYAN
+        intersect_color = (0, 255, 0) #GREEN
+        no_intersect_color = (0, 255, 255) #YELLOW
 
         # if self.target_window_areas is None:
         for line in lines:
             line_flat = line.flatten()
             x1, y1, x2, y2 = line_flat
-            cv2.line(img_show, (x1, y1), (x2, y2), line_color, 2)
+            cv2.line(img_show, (x1, y1), (x2, y2), line_color, 1)
+
+        if self.target_window_pegs is not None:
+            for set_of_pegs in self.target_window_pegs:
+                rcolor = no_intersect_color
+                for line in lines:
+                    if all(line_intersect_line(line.flatten(), peg) for peg in set_of_pegs):
+                        rcolor = intersect_color
+                        break
+                
+                for x1, y1, x2, y2 in set_of_pegs:
+                    cv2.line(img_show, (x1, y1), (x2, y2), rcolor, 4 )
+
+        # if self.target_window_pegs is not None:
+        #     for line_seg in self.target_window_pegs:
+        #         rcolor = no_intersect_color
+        #         for line in lines:
+        #             if line_intersect_line(line.flatten(), line_seg):
+        #                 rcolor = intersect_color
+        #                 break
+        #         x1, y1, x2, y2 = line_seg
+        #         cv2.line(img_show, (x1, y1), (x2, y2), rcolor, 4 )
 
         if self.target_window_areas is not None:
             for rect in self.target_window_areas:
@@ -131,6 +152,7 @@ class WindowDetector():
                         # intersect = True
                 # if intersect:
                        rcolor = intersect_color
+                       break
                 # else: 
                     # rcolor = no_intersect_color
                 l, t, r, b = rect

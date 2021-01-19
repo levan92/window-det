@@ -9,9 +9,9 @@ def line_intersect_line(line1, line2):
     ''' 
       
     class Point: 
-        def __init__(self, xy): 
-            self.x = xy[0] 
-            self.y = xy[1]
+        def __init__(self, x, y): 
+            self.x = x 
+            self.y = y
     
     # Given three colinear points p, q, r, the function checks if  
     # point q lies on line segment 'pr'  
@@ -42,10 +42,10 @@ def line_intersect_line(line1, line2):
             # Colinear orientation
             return 0
 
-    p1 = Point(line1[0])
-    q1 = Point(line1[1])
-    p2 = Point(line2[0])
-    q2 = Point(line2[1])
+    p1 = Point(line1[0], line1[1])
+    q1 = Point(line1[2], line1[3])
+    p2 = Point(line2[0], line2[1])
+    q2 = Point(line2[2], line2[3])
 
     # Find the 4 orientations required for  
     # the general and special cases 
