@@ -15,7 +15,14 @@ Since traditional CV approaches are used, you should probably expect that you wi
 
 ### Example Use Case
 
-In an example, we use this repo to find out if a given screenshot from a fixed screen has a maximised or minimised youtube video player. We set target rectangles where we will expect the minimised youtube video player's window to be.
+In an example, we use this repo to find out if a given screenshot from a fixed screen has a maximised or minimised youtube video player. 
+
+There are two ways (not mutually exclusive) we can condition the existence of windows upon:
+
+1. **Target Window Areas**: We set target rectangles where we will expect the minimised youtube video player's window to be. All rectangles must be detected lines that pass through it.
+2. **Target Window Pegs**: Think clothes line pegs &mdash; these are short line segments, where sets of "pegs" will be defined. At least one detected line must intersect through all pegs in a set. 
+
+If none of the conditions are given, then as long as there are detected lines, window existence will be true.
 
 Example input images: 
 
@@ -38,6 +45,8 @@ Parameters to the algorithms can be defined in json config files and given to `W
 For selection of parameters, you can execute [tuning](#tune).
 
 ## Tune
+
+*illustrations not updated with pegs, run tuning on yt-example to see.*
 
 Before tuning:
 ![before-tuning](illustrations/before_tuning.jpg)

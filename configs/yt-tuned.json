@@ -1,4 +1,8 @@
 {
+    "target_window_pegs": [
+        [[120, 135, 120, 165],[1425, 135, 1425, 165]],
+        [[20, 140, 50, 140],[20, 400, 50, 400],[20, 880, 50, 880]]
+    ],
     "target_window_areas": [
         [1389, 178, 1431, 688],
         [273, 132, 924, 173]
@@ -8,7 +12,7 @@
     "closing_kernel_width": 5, 
     "hough_rho": 1, 
     "hough_theta_degree": 1, 
-    "hough_thresh": 300, 
-    "hough_min_line_length": 700, 
-    "hough_max_line_gap": 80
+    "hough_thresh": 237, 
+    "hough_min_line_length": 588, 
+    "hough_max_line_gap": 1302
 }
